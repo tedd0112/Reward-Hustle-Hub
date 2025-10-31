@@ -1,4 +1,4 @@
-const AFFILIATE_URL = "https://www.surveysandpromoonline.com/?Flow=6b51d955-0748-462e-9eb5-0ccdd7eceb37&isPrePop=true&RBC=1&reward=cash750&o=211247&affsecid=5038739951&subaff1=&subaff2=207555&subaff3=236403&subaff4=cash750-cpa2-14781&DVID=&bckm=1";
+const AFFILIATE_URL = "https://offerlnks.com/aff_c?offer_id=1595&aff_id=153184";
 
 // Utilities
 const qs = (sel, ctx = document) => ctx.querySelector(sel);
@@ -58,30 +58,32 @@ function dataLayerPush(obj) {
   }
 })();
 
-// CTA behavior
+// CTA behavior (supports multiple buttons and delayed redirect)
 (function setupCTA() {
-  const cta = qs('#primary-cta');
+  const buttons = qsa('.get-started, #primary-cta');
   const adminModal = qs('#admin-modal');
-  if (!cta) return;
-  cta.addEventListener('click', () => {
+  if (buttons.length === 0) return;
+
+  function handleClick(e) {
+    e.preventDefault();
+
     const utm = getUTMParams();
     const evt = { event: 'cta_click', time: new Date().toISOString(), utm };
     safeLocalStorageSet('cta_click_' + Date.now(), evt);
     dataLayerPush(evt);
 
     if (!AFFILIATE_URL || AFFILIATE_URL.trim() === '') {
-      // Show admin modal
       openModal(adminModal);
       return;
     }
 
-    try {
-      const newWin = window.open(AFFILIATE_URL, '_blank', 'noopener,noreferrer');
-      if (!newWin) window.location.href = AFFILIATE_URL; // popup blocked fallback
-    } catch (e) {
-      window.location.href = AFFILIATE_URL; // ultimate fallback
-    }
-  });
+    showToast('Redirecting...');
+    setTimeout(() => {
+      window.location.href = AFFILIATE_URL;
+    }, 200);
+  }
+
+  buttons.forEach(btn => btn.addEventListener('click', handleClick));
 })();
 
 // SMS modal

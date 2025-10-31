@@ -1,4 +1,4 @@
-const AFFILIATE_URL = "https://uplevelrewarded.com/your-tracking-id-here";
+const AFFILIATE_URL = "https://www.surveysandpromoonline.com/?Flow=6b51d955-0748-462e-9eb5-0ccdd7eceb37&isPrePop=true&RBC=1&reward=cash750&o=211247&affsecid=5038739951&subaff1=&subaff2=207555&subaff3=236403&subaff4=cash750-cpa2-14781&DVID=&bckm=1";
 
 // Utilities
 const qs = (sel, ctx = document) => ctx.querySelector(sel);

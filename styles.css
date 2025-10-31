@@ -108,6 +108,15 @@ body {
 .toast { position: fixed; left: 50%; bottom: 1rem; transform: translateX(-50%); background: #0d1b13; color: #dcfce7; border: 1px solid rgba(16,185,129,0.35); padding: .6rem .8rem; border-radius: 10px; z-index: 50; box-shadow: var(--shadow); }
 
 /* Responsive */
+@media (min-width: 480px) {
+  .hero-text h1 { font-size: 1.75rem; }
+  .subtitle { font-size: 1.05rem; }
+}
+
+@media (min-width: 640px) {
+  .container { width: min(100% - 3rem, 1100px); }
+}
+
 @media (min-width: 768px) {
   .hero { grid-template-columns: 1.1fr .9fr; gap: 2rem; padding: 2rem 0 0; }
   .hero-text h1 { font-size: 2rem; }
@@ -117,6 +126,13 @@ body {
 
 @media (min-width: 1024px) {
   .hero-text h1 { font-size: 2.3rem; }
+}
+
+@media (min-width: 1200px) {
+  .container { width: min(100% - 4rem, 1200px); }
+  .hero { gap: 2.25rem; padding-top: 2.25rem; grid-template-columns: 1fr 1fr; }
+  .hero-text h1 { font-size: 2.6rem; }
+  .subtitle { font-size: 1.1rem; }
 }
 
 
